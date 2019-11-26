@@ -99,7 +99,7 @@ public class MainUI extends javax.swing.JFrame {
 
     private void exit_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_btnActionPerformed
         //Botón Mostrar temperatura:
-        
+        new VentanaTemperatura().setVisible(true);
     }//GEN-LAST:event_exit_btnActionPerformed
 
     private void temperature_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_temperature_btnActionPerformed

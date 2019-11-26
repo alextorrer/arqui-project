@@ -109,7 +109,7 @@ public class MainUI extends javax.swing.JFrame {
 
     private void grade_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grade_btnActionPerformed
         //Botón Salir:
-        
+        this.dispose();
     }//GEN-LAST:event_grade_btnActionPerformed
 
     /**

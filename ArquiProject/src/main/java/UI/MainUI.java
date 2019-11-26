@@ -104,7 +104,7 @@ public class MainUI extends javax.swing.JFrame {
 
     private void temperature_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_temperature_btnActionPerformed
         //Botón Enviar calificación:
-        
+        new VentanaEnviarCalificacion().setVisible(true);
     }//GEN-LAST:event_temperature_btnActionPerformed
 
     private void grade_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grade_btnActionPerformed

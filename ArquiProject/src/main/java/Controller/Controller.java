@@ -47,8 +47,21 @@ public class Controller {
     }
     
     public void interpretarTemperatura(String serial){
-        for (int i=0;i<3;i++){
-            
+        String temperatura="";
+        for (int i=0;i<4;i++){
+            char caracter = serial.charAt(i);
+            temperatura= temperatura + caracter;
+        }
+    }
+    
+    public void interpretarBotones(String serial){
+        boolean boton1 = false;
+        boolean boton2 = false;
+        if (serial.charAt(5)=='1'){
+            boton1 = true;
+        }
+        if (serial.charAt(6)=='1'){
+            boton2 = false;
         }
     }
     

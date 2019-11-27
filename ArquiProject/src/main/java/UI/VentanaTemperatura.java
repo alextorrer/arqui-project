@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package UI;
+import Controller.Controller;
 
 /**
  *
@@ -11,6 +12,8 @@ package UI;
  */
 public class VentanaTemperatura extends javax.swing.JFrame {
 
+    Controller controller;
+    
     /**
      * Creates new form VentanaTemperatura
      */
@@ -88,6 +91,12 @@ public class VentanaTemperatura extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    //NUESTRAS FUNCIONES
+    public void setController(Controller controller){
+        this.controller = controller;
+    }
+    
+    
     /**
      * @param args the command line arguments
      */

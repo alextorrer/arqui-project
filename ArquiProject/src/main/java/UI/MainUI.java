@@ -1,8 +1,9 @@
 
 package UI;
+import Controller.Controller;
 
 public class MainUI extends javax.swing.JFrame {
-
+    Controller controller;
     /**
      * Creates new form MainUI
      */
@@ -112,6 +113,12 @@ public class MainUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_grade_btnActionPerformed
 
+    //NUESTRAS FUNCIONES
+    public void setController(Controller controller){
+        this.controller = controller;
+    }
+    
+    
     /**
      * @param args the command line arguments
      */public static void main(String args[]) {

@@ -31,7 +31,7 @@ public class SerialPortReader {
                 recibido += caracter;
             }
             Thread.sleep(100);
-            celsius = convertirACelsius(recibido);
+            celsius = Double.parseDouble(recibido);
             System.out.println(celsius + " °C");
         }         
     }
@@ -43,12 +43,5 @@ public class SerialPortReader {
         }
     }
 
-    public static double convertirACelsius(String kelvinString){
-            double celsius = 0;
-            double kelvin = 0;
-            kelvin = Double.parseDouble(kelvinString);
-            celsius = kelvin - 273.15;
-            return celsius;
-    }
       
 }

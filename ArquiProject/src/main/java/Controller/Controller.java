@@ -121,6 +121,11 @@ public class Controller {
         ventanaTemperatura.setVisible(true);
     }
     
+    public float interpretarTemperatura(int temp){
+        float temperatura = temp*5*100/1024;
+        return temperatura;
+    }
+    
     
     
 }

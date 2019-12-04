@@ -19,6 +19,25 @@ public class VentanaTemperatura extends javax.swing.JFrame {
      */
     public VentanaTemperatura() {
         initComponents();
+        
+    }
+    
+    public VentanaTemperatura(Controller controller){
+        initComponents();
+        this.controller=controller;
+        mostrarTemperatura();
+    }
+    
+    public void mostrarTemperatura(){
+        int tempLS;
+        int tempMS;
+        int temperatura;
+        tempLS = controller.interpretarTemperaturaLS(controller.getSerial());
+        System.out.println(tempLS);
+        tempMS = controller.interpretarTemperaturaMS(controller.getSerial());
+        System.out.println(tempMS);
+        temperatura = tempLS+tempMS;
+        this.lbTemperatura.setText(""+controller.interpretarTemperatura(temperatura));
     }
 
     /**
@@ -30,15 +49,19 @@ public class VentanaTemperatura extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbTemperatura = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lbTitulo = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lbTemperatura = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
-        lbTemperatura.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lbTemperatura.setText("Temperatura");
+        lbTitulo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lbTitulo.setText("Temperatura");
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -47,7 +70,7 @@ public class VentanaTemperatura extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("En esta ventana iría la temperatura mostrada");
+        lbTemperatura.setText("En esta ventana iría la temperatura mostrada");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -57,13 +80,10 @@ public class VentanaTemperatura extends javax.swing.JFrame {
                 .addContainerGap(111, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(134, 134, 134))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lbTemperatura)
+                        .addComponent(lbTitulo)
                         .addGap(186, 186, 186))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(lbTemperatura)
                         .addGap(147, 147, 147))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnSalir)
@@ -73,14 +93,12 @@ public class VentanaTemperatura extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
+                .addComponent(lbTitulo)
+                .addGap(57, 57, 57)
                 .addComponent(lbTemperatura)
                 .addGap(57, 57, 57)
-                .addComponent(jLabel1)
-                .addGap(57, 57, 57)
                 .addComponent(btnSalir)
-                .addGap(73, 73, 73)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         pack();
@@ -90,6 +108,10 @@ public class VentanaTemperatura extends javax.swing.JFrame {
         // Botón Salir:
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        
+    }//GEN-LAST:event_formWindowActivated
 
     //NUESTRAS FUNCIONES
     public void setController(Controller controller){
@@ -134,8 +156,7 @@ public class VentanaTemperatura extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lbTemperatura;
+    private javax.swing.JLabel lbTitulo;
     // End of variables declaration//GEN-END:variables
 }

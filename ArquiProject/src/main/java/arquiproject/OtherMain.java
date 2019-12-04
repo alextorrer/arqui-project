@@ -20,8 +20,11 @@ public class OtherMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
         Controller controller = new Controller();
+        String serial = "127015000";
+        controller.setSerial(serial);
+        
+        
         MainUI mainUI = new MainUI();
         VentanaTemperatura ventanaTemperatura = new VentanaTemperatura();
 
@@ -30,8 +33,7 @@ public class OtherMain {
         mainUI.setController(controller);
         ventanaTemperatura.setController(controller);
         
-        String serial = "255215000";
-        controller.setSerial(serial);
+        
         
         mainUI.setVisible(true);
         

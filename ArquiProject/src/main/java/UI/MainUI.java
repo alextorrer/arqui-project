@@ -1,6 +1,8 @@
 
 package UI;
 import Controller.Controller;
+import arquiproject.OtherMain;
+import java.awt.Color;
 
 public class MainUI extends javax.swing.JFrame {
     Controller controller;
@@ -9,6 +11,7 @@ public class MainUI extends javax.swing.JFrame {
      */
     public MainUI() {
         initComponents();
+        /**/
     }
 
     /**
@@ -21,12 +24,19 @@ public class MainUI extends javax.swing.JFrame {
     private void initComponents() {
 
         welcome_lbl = new javax.swing.JLabel();
-        temperature_btn = new javax.swing.JButton();
         grade_btn = new javax.swing.JButton();
         exit_btn = new javax.swing.JButton();
+        temperature_btn = new javax.swing.JButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         welcome_lbl.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         welcome_lbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -34,16 +44,8 @@ public class MainUI extends javax.swing.JFrame {
         welcome_lbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         welcome_lbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        temperature_btn.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        temperature_btn.setText("Enviar Califiación");
-        temperature_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                temperature_btnActionPerformed(evt);
-            }
-        });
-
         grade_btn.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        grade_btn.setText("Salir");
+        grade_btn.setText("Enviar Califiación");
         grade_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 grade_btnActionPerformed(evt);
@@ -51,10 +53,27 @@ public class MainUI extends javax.swing.JFrame {
         });
 
         exit_btn.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        exit_btn.setText("Mostrar Temperatura");
+        exit_btn.setText("Salir");
         exit_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exit_btnActionPerformed(evt);
+            }
+        });
+
+        temperature_btn.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        temperature_btn.setText("Mostrar Temperatura");
+        temperature_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                temperature_btnActionPerformed(evt);
+            }
+        });
+
+        jRadioButton1.setText("Funcionar");
+
+        jButton1.setText("Enter");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
             }
         });
 
@@ -65,16 +84,24 @@ public class MainUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(exit_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                        .addComponent(temperature_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56)
-                        .addComponent(grade_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(178, 178, 178)
                         .addComponent(welcome_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(temperature_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                                .addComponent(grade_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(56, 56, 56))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jRadioButton1)
+                                .addGap(99, 99, 99)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(exit_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -85,11 +112,15 @@ public class MainUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addComponent(welcome_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(temperature_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton1)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(grade_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(exit_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(exit_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(temperature_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56))
         );
 
@@ -98,20 +129,82 @@ public class MainUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void exit_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_btnActionPerformed
+    private void temperature_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_temperature_btnActionPerformed
         //Botón Mostrar temperatura:
         new VentanaTemperatura().setVisible(true);
-    }//GEN-LAST:event_exit_btnActionPerformed
-
-    private void temperature_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_temperature_btnActionPerformed
-        //Botón Enviar calificación:
-        new VentanaEnviarCalificacion().setVisible(true);
     }//GEN-LAST:event_temperature_btnActionPerformed
 
     private void grade_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grade_btnActionPerformed
+        //Botón Enviar calificación:
+        new VentanaEnviarCalificacion().setVisible(true);
+    }//GEN-LAST:event_grade_btnActionPerformed
+
+    private void exit_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_btnActionPerformed
         //Botón Salir:
         this.dispose();
-    }//GEN-LAST:event_grade_btnActionPerformed
+    }//GEN-LAST:event_exit_btnActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        String serial;
+        int tempLS;
+        int tempMS;
+        int temperatura;
+        int potenciometro;
+        boolean botonSalir;
+        boolean botonEntrar;
+        while (true){
+            serial = controller.getSerial();
+            tempLS = controller.interpretarTemperaturaLS(serial);
+            tempMS = controller.interpretarTemperaturaMS(serial);
+            temperatura = tempLS+tempMS;
+            potenciometro = controller.interpretarPotenciometro(serial);
+            System.out.println(potenciometro+"\n");
+            botonSalir = controller.interpretarBotonSalir(serial.charAt(7));
+            botonEntrar = controller.interpretarBotonEntrar(serial.charAt(8));
+            switch (potenciometro){
+                case 0:
+                    this.temperature_btn.setBackground(Color.red);
+                    this.grade_btn.setBackground(Color.black);
+                    this.exit_btn.setBackground(Color.black);
+                    break;
+                case 1:
+                    this.grade_btn.setBackground(Color.red);
+                    this.exit_btn.setBackground(Color.black);
+                    this.temperature_btn.setBackground(Color.black);
+                    break;
+                case 2:
+                    this.exit_btn.setBackground(Color.red);
+                    this.grade_btn.setBackground(Color.black);
+                    this.temperature_btn.setBackground(Color.black);
+                    break;
+            }
+            
+            if (botonSalir==true){
+                this.dispose();
+            }
+            if (botonEntrar==true){
+                switch (potenciometro){
+                    case 0:
+                        new VentanaTemperatura().setVisible(true);
+                        this.dispose();
+                        break;
+                    case 1:
+                        new VentanaEnviarCalificacion().setVisible(true);
+                        this.dispose();
+                        break;
+                    case 2:
+                        this.dispose();
+                        break;
+                }
+                break;
+            }
+        }
+        System.out.println("Todo bien compa");
+    }//GEN-LAST:event_formWindowActivated
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        controller.setSerial("255215001");
+    }//GEN-LAST:event_jButton1MouseClicked
 
     //NUESTRAS FUNCIONES
     public void setController(Controller controller){
@@ -121,41 +214,23 @@ public class MainUI extends javax.swing.JFrame {
     
     /**
      * @param args the command line arguments
-     */public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
+     */
+    public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainUI().setVisible(true);
             }
         });
+        
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exit_btn;
     private javax.swing.JButton grade_btn;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JButton temperature_btn;
     private javax.swing.JLabel welcome_lbl;
     // End of variables declaration//GEN-END:variables

@@ -8,7 +8,6 @@ import app.Com;
 import app.Parameters;
 import core.SerialPort;
 import java.util.List;
-import static serialPortReader.SerialPortReader.convertirACelsius;
 import static serialPortReader.SerialPortReader.puertosDisponibles;
 
 public class Main {

@@ -7,6 +7,7 @@ package Controller;
 
 import UI.MainUI;
 import UI.VentanaTemperatura;
+import arquiproject.OtherMain;
 
 /**
  *
@@ -16,6 +17,7 @@ public class Controller {
 
     MainUI mainUI;
     VentanaTemperatura ventanaTemperatura = new VentanaTemperatura();
+    String serial;
 
     public Controller() {
         
@@ -29,6 +31,11 @@ public class Controller {
     public void setVentanaTemperatura(VentanaTemperatura ventanaTemperatura) {
         this.ventanaTemperatura = ventanaTemperatura;
     }
+
+    public void setSerial(String serial) {
+        this.serial = serial;
+    }
+
     
     //Métodos GET
     public MainUI getMainUI() {
@@ -38,6 +45,11 @@ public class Controller {
     public VentanaTemperatura getVentanaTemperatura() {
         return ventanaTemperatura;
     }
+
+    public String getSerial() {
+        return serial;
+    }
+    
     
     /*------------------------FUNCIONES DEL CONTROLER------------------------*/
     
@@ -54,8 +66,23 @@ public class Controller {
     
     public int interpretarTemperaturaMS(String serial){
         String temperatura="";
+        int temperaturaCompleta=0;
         temperatura = temperatura + serial.charAt(3);
-        return Integer.parseInt(temperatura);
+        switch (temperatura){
+            case "0":
+                temperaturaCompleta=0;
+                break;
+            case "1":
+                temperaturaCompleta=256;
+                break;
+            case "2":
+                temperaturaCompleta=512;
+                break;
+            case "3":
+                temperaturaCompleta=768;
+                break;
+        }
+        return temperaturaCompleta;
     }
     
     public int interpretarPotenciometro(String serial){
@@ -64,8 +91,8 @@ public class Controller {
             char caracter = serial.charAt(i);
             potenciometro = potenciometro + caracter;
         }
-        float posicionEnPantalla = Integer.parseInt(potenciometro)/85;
-        return (int)posicionEnPantalla;
+        double posicionEnPantalla = Integer.parseInt(potenciometro)/86;
+        return (int)Math.floor(posicionEnPantalla);
     }
     
     public boolean interpretarBotonSalir(char serial){
@@ -83,6 +110,7 @@ public class Controller {
         }
         return boton;
     }
+    
     
     //FUNCIONES DEL MainUI
     

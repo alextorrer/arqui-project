@@ -35,6 +35,7 @@ public class Controller {
     public void setSerial(String serial) {
         this.serial = serial;
     }
+    
 
     
     //Métodos GET

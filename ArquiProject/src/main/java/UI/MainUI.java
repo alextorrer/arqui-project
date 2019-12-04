@@ -6,12 +6,79 @@ import java.awt.Color;
 
 public class MainUI extends javax.swing.JFrame {
     Controller controller;
+    
     /**
      * Creates new form MainUI
      */
     public MainUI() {
         initComponents();
         /**/
+    }
+    
+    Thread ciclo = new Thread(){
+        public void run(){
+            cicloCheck();
+        }
+    };
+    
+    
+    public void cicloCheck(){
+        String serial;
+        int tempLS;
+        int tempMS;
+        int temperatura;
+        int potenciometro;
+        boolean botonSalir;
+        boolean botonEntrar;
+        while (true){
+            
+            serial = controller.getSerial();
+            tempLS = controller.interpretarTemperaturaLS(serial);
+            tempMS = controller.interpretarTemperaturaMS(serial);
+            temperatura = tempLS+tempMS;
+            potenciometro = controller.interpretarPotenciometro(serial);
+            System.out.println(potenciometro+"\n");
+            botonSalir = controller.interpretarBotonSalir(serial.charAt(7));
+            botonEntrar = controller.interpretarBotonEntrar(serial.charAt(8));
+            switch (potenciometro){
+                case 0:
+                    this.temperature_btn.setBackground(Color.red);
+                    this.grade_btn.setBackground(Color.black);
+                    this.exit_btn.setBackground(Color.black);
+                    break;
+                case 1:
+                    this.grade_btn.setBackground(Color.red);
+                    this.exit_btn.setBackground(Color.black);
+                    this.temperature_btn.setBackground(Color.black);
+                    break;
+                case 2:
+                    this.exit_btn.setBackground(Color.red);
+                    this.grade_btn.setBackground(Color.black);
+                    this.temperature_btn.setBackground(Color.black);
+                    break;
+            }
+
+            if (botonSalir==true){
+                this.dispose();
+            }
+            if (botonEntrar==true){
+                switch (potenciometro){
+                    case 0:
+                        new VentanaTemperatura().setVisible(true);
+                        this.dispose();
+                        break;
+                    case 1:
+                        new VentanaEnviarCalificacion().setVisible(true);
+                        this.dispose();
+                        break;
+                    case 2:
+                        this.dispose();
+                        break;
+                }
+                break;
+            }
+        }
+        System.out.println("Todo bien compa");
     }
 
     /**
@@ -27,8 +94,10 @@ public class MainUI extends javax.swing.JFrame {
         grade_btn = new javax.swing.JButton();
         exit_btn = new javax.swing.JButton();
         temperature_btn = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -68,12 +137,31 @@ public class MainUI extends javax.swing.JFrame {
             }
         });
 
-        jRadioButton1.setText("Funcionar");
-
         jButton1.setText("Enter");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
+            }
+        });
+
+        jButton2.setText("Izquierda");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Medio");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Derecha");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -88,17 +176,20 @@ public class MainUI extends javax.swing.JFrame {
                         .addComponent(welcome_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
                                 .addComponent(temperature_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                                 .addComponent(grade_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(56, 56, 56))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jRadioButton1)
-                                .addGap(99, 99, 99)))
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1)
                             .addComponent(exit_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -114,8 +205,10 @@ public class MainUI extends javax.swing.JFrame {
                 .addComponent(welcome_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(grade_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,66 +238,27 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_exit_btnActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        String serial;
-        int tempLS;
-        int tempMS;
-        int temperatura;
-        int potenciometro;
-        boolean botonSalir;
-        boolean botonEntrar;
-        while (true){
-            serial = controller.getSerial();
-            tempLS = controller.interpretarTemperaturaLS(serial);
-            tempMS = controller.interpretarTemperaturaMS(serial);
-            temperatura = tempLS+tempMS;
-            potenciometro = controller.interpretarPotenciometro(serial);
-            System.out.println(potenciometro+"\n");
-            botonSalir = controller.interpretarBotonSalir(serial.charAt(7));
-            botonEntrar = controller.interpretarBotonEntrar(serial.charAt(8));
-            switch (potenciometro){
-                case 0:
-                    this.temperature_btn.setBackground(Color.red);
-                    this.grade_btn.setBackground(Color.black);
-                    this.exit_btn.setBackground(Color.black);
-                    break;
-                case 1:
-                    this.grade_btn.setBackground(Color.red);
-                    this.exit_btn.setBackground(Color.black);
-                    this.temperature_btn.setBackground(Color.black);
-                    break;
-                case 2:
-                    this.exit_btn.setBackground(Color.red);
-                    this.grade_btn.setBackground(Color.black);
-                    this.temperature_btn.setBackground(Color.black);
-                    break;
-            }
-            
-            if (botonSalir==true){
-                this.dispose();
-            }
-            if (botonEntrar==true){
-                switch (potenciometro){
-                    case 0:
-                        new VentanaTemperatura().setVisible(true);
-                        this.dispose();
-                        break;
-                    case 1:
-                        new VentanaEnviarCalificacion().setVisible(true);
-                        this.dispose();
-                        break;
-                    case 2:
-                        this.dispose();
-                        break;
-                }
-                break;
-            }
-        }
-        System.out.println("Todo bien compa");
+        ciclo.start();
     }//GEN-LAST:event_formWindowActivated
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        controller.setSerial("255215001");
+        StringBuilder nuevoSerial = new StringBuilder(controller.getSerial());
+        nuevoSerial.setCharAt(8, '1');
+        controller.setSerial(nuevoSerial.toString());
+        
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        controller.setSerial("255208500");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        controller.setSerial("255215000");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        controller.setSerial("255225000");
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     //NUESTRAS FUNCIONES
     public void setController(Controller controller){
@@ -230,7 +284,9 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JButton exit_btn;
     private javax.swing.JButton grade_btn;
     private javax.swing.JButton jButton1;
-    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton temperature_btn;
     private javax.swing.JLabel welcome_lbl;
     // End of variables declaration//GEN-END:variables

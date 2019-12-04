@@ -42,27 +42,46 @@ public class Controller {
     /*------------------------FUNCIONES DEL CONTROLER------------------------*/
     
     //FUNCIONES LOGICAS
-    public void leerSerial(String serial){
-        
-    }
     
-    public void interpretarTemperatura(String serial){
+    public int interpretarTemperaturaLS(String serial){
         String temperatura="";
-        for (int i=0;i<4;i++){
+        for (int i=0;i<3;i++){
             char caracter = serial.charAt(i);
-            temperatura= temperatura + caracter;
+            temperatura = temperatura + caracter;
         }
+        return Integer.parseInt(temperatura);
     }
     
-    public void interpretarBotones(String serial){
-        boolean boton1 = false;
-        boolean boton2 = false;
-        if (serial.charAt(5)=='1'){
-            boton1 = true;
+    public int interpretarTemperaturaMS(String serial){
+        String temperatura="";
+        temperatura = temperatura + serial.charAt(3);
+        return Integer.parseInt(temperatura);
+    }
+    
+    public int interpretarPotenciometro(String serial){
+        String potenciometro="";
+        for (int i=4;i<7;i++){
+            char caracter = serial.charAt(i);
+            potenciometro = potenciometro + caracter;
         }
-        if (serial.charAt(6)=='1'){
-            boton2 = false;
+        float posicionEnPantalla = Integer.parseInt(potenciometro)/85;
+        return (int)posicionEnPantalla;
+    }
+    
+    public boolean interpretarBotonSalir(char serial){
+        boolean boton = false;
+        if (serial=='1'){
+            boton = true;
         }
+        return boton;
+    }
+    
+    public boolean interpretarBotonEntrar(char serial){
+        boolean boton = false;
+        if (serial=='1'){
+            boton = true;
+        }
+        return boton;
     }
     
     //FUNCIONES DEL MainUI

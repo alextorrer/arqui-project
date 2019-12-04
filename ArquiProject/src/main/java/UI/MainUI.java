@@ -77,6 +77,11 @@ public class MainUI extends javax.swing.JFrame {
                 }
                 break;
             }
+            try {
+                Thread.sleep(50);
+            }catch(InterruptedException e){
+                System.out.println("Waiting...");
+            }
         }
         System.out.println("Todo bien compa");
     }

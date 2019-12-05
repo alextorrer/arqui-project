@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class VentanaEnviarCalificacion extends javax.swing.JFrame {
     
+    boolean flagPane = false;
 
     /**
      * Creates new form VentanaEnviarCalificacion
@@ -145,6 +146,13 @@ public class VentanaEnviarCalificacion extends javax.swing.JFrame {
                 new VentanaEnviarCalificacion().setVisible(true);
             }
         });
+    }
+    
+    public boolean showOptionPane(){
+        txtIngresarCalif.setText(" ");
+        JOptionPane.showMessageDialog(null, "Su calificación ha sido enviada al correo irving.cifuentes@correo.uady.mx");
+        flagPane = true;
+        return flagPane;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

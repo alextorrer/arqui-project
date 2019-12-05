@@ -35,7 +35,6 @@ public class MainUI extends javax.swing.JFrame {
         VentanaTemperatura ventanaTemp = new VentanaTemperatura();
         VentanaEnviarCalificacion ventanaEC = new VentanaEnviarCalificacion();
         String serial="";
-        StringBuilder nuevoSerial;
         int potenciometro;
         boolean botonSalir;
         boolean botonEntrar;
@@ -96,7 +95,12 @@ public class MainUI extends javax.swing.JFrame {
                 } 
             }
             if (botonEntrar==true){
-                switch (potenciometro){
+                
+                if(ventanaEC.isVisible()){
+                    ventanaEC.showOptionPane();
+                }else{
+                    
+                    switch (potenciometro){
                     case 0:
                         ventanaTemp.setVisible(true);
                         break;
@@ -107,7 +111,9 @@ public class MainUI extends javax.swing.JFrame {
                         System.exit(0);
                         this.dispose();
                         break;
+                    }
                 }
+                
             }
             try {
                 Thread.sleep(50);

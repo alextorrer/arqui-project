@@ -5,6 +5,9 @@
  */
 package UI;
 import Controller.Controller;
+import app.Com;
+import app.Parameters;
+import core.SerialPort;
 
 /**
  *
@@ -23,17 +26,36 @@ public class VentanaTemperatura extends javax.swing.JFrame {
         
     }
     
-    public void mostrarTemperatura(){
+    Thread ciclo = new Thread(){
+        public void run(){
+            try{
+                cicloTemperatura();
+            }
+            catch(Exception e){
+                
+            }
+        }
+    };
+    
+    public void cicloTemperatura(){
         int tempLS;
         int tempMS;
         int temperatura;
-        tempLS = controller.interpretarTemperaturaLS(controller.getSerial());
-        System.out.println(tempLS);
-        tempMS = controller.interpretarTemperaturaMS(controller.getSerial());
-        System.out.println(tempMS);
-        temperatura = tempLS+tempMS;
-        this.lbTemperatura.setText(""+controller.interpretarTemperatura(temperatura));
+        while (true){
+            tempLS = controller.interpretarTemperaturaLS(controller.getSerial());
+            System.out.println(tempLS);
+            tempMS = controller.interpretarTemperaturaMS(controller.getSerial());
+            System.out.println(tempMS);
+            temperatura = tempLS+tempMS;
+            this.lbTemperatura.setText(""+controller.interpretarTemperatura(temperatura));
+            
+            if (!this.isVisible()){
+                break;
+            }
+        }
+        
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -115,7 +137,7 @@ public class VentanaTemperatura extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // Empieza el ciclo
-        mostrarTemperatura();
+        ciclo.start();
     }//GEN-LAST:event_formWindowOpened
 
     //NUESTRAS FUNCIONES

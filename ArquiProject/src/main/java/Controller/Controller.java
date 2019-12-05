@@ -56,18 +56,18 @@ public class Controller {
     
     //FUNCIONES LOGICAS
     
-    public int interpretarTemperaturaLS(){
+    public float interpretarTemperaturaLS(){
         String temperatura="";
         for (int i=3;i<6;i++){
             char caracter = serial.charAt(i);
             temperatura = temperatura + caracter;
         }
-        return Integer.parseInt(temperatura);
+        return Float.parseFloat(temperatura);
     }
     
-    public int interpretarTemperaturaMS(){
+    public float interpretarTemperaturaMS(){
         String temperatura="";
-        int temperaturaCompleta=0;
+        float temperaturaCompleta=0;
         temperatura = temperatura + serial.charAt(2);
         switch (temperatura){
             case "0":

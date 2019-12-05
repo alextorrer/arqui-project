@@ -43,9 +43,9 @@ public class MainUI extends javax.swing.JFrame {
         settings.setBaudRate("115200");
         Com com5 = new Com(settings);
         //Espacio para variables de temperatura
-        int tempLS;
-        int tempMS;
-        int temperatura;
+        float tempLS;
+        float tempMS;
+        float temperatura;
         while (true){
             
             //Serial  

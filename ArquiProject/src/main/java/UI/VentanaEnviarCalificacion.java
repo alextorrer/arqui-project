@@ -6,6 +6,7 @@
 package UI;
 
 
+import Controller.SendEmail;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,6 +16,7 @@ import javax.swing.JOptionPane;
 public class VentanaEnviarCalificacion extends javax.swing.JFrame {
     
     boolean flagPane = false;
+    SendEmail send = new SendEmail();
 
     /**
      * Creates new form VentanaEnviarCalificacion
@@ -125,6 +127,7 @@ public class VentanaEnviarCalificacion extends javax.swing.JFrame {
             this.lbCalificacion.setText("Piense mejor su calificacion :(");
         }else {
             this.lbCalificacion.setText("Su calificación ha sido enviada al correo irving.cifuentes@correo.uady.mx");
+            send.sendGrade(txtIngresarCalif.getText());
         }
     }
     

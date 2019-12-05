@@ -31,6 +31,8 @@ public class MainUI extends javax.swing.JFrame {
     
     
     public void cicloCheck() throws Exception{
+        VentanaTemperatura ventanaTemp = new VentanaTemperatura();
+        VentanaEnviarCalificacion ventanaEC = new VentanaEnviarCalificacion();
         String serial="";
         StringBuilder nuevoSerial;
         int potenciometro;
@@ -85,21 +87,20 @@ public class MainUI extends javax.swing.JFrame {
             }
 
             if (botonSalir==true){
-                this.dispose();
+                if(ventanaTemp.isVisible()){
+                    ventanaTemp.setVisible(false);
+                }
+                if (ventanaEC.isVisible()){
+                    ventanaEC.setVisible(false);
+                }
             }
             if (botonEntrar==true){
                 switch (potenciometro){
                     case 0:
-                        new VentanaTemperatura(controller).setVisible(true);
-                        nuevoSerial = new StringBuilder(controller.getSerial());
-                        nuevoSerial.setCharAt(8, '0');
-                        controller.setSerial(nuevoSerial.toString());
+                        ventanaTemp.setVisible(true);
                         break;
                     case 1:
-                        new VentanaEnviarCalificacion().setVisible(true);
-                        nuevoSerial = new StringBuilder(controller.getSerial());
-                        nuevoSerial.setCharAt(8, '0');
-                        controller.setSerial(nuevoSerial.toString());
+                        ventanaEC.setVisible(true);
                         break;
                     case 2:
                         System.exit(0);

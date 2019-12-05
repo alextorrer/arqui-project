@@ -9,8 +9,8 @@ public class SendEmail {
 
     public void sendGrade(String grade) {
 
-        final String username = "alextorre0427@gmail.com";
-        final String password = "atr290104";
+        final String username = "arquiprojectuady@gmail.com";
+        final String password = "arquitectura";
 
         Properties prop = new Properties();
 	prop.put("mail.smtp.host", "smtp.gmail.com");
@@ -29,13 +29,13 @@ public class SendEmail {
         try {
 
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("alextorre0427@gmail.com"));
+            message.setFrom(new InternetAddress("arquiprojectuady@gmail.com"));
             message.setRecipients(
                     Message.RecipientType.TO,
-                    InternetAddress.parse("renequintal00@gmail.com")
+                    InternetAddress.parse("irving.cifuentes@correo.uady.mx")
             );
             message.setSubject("Email from Arqui Project");
-            message.setText("Tu calificación es de" + grade);
+            message.setText("La calificación asignada es " + grade);
 
             Transport.send(message);
 

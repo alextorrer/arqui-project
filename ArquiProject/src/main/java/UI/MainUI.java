@@ -88,19 +88,19 @@ public class MainUI extends javax.swing.JFrame {
             //Revisa el estado del potenciometro y te posiciona en el boton virtual corrrespondiente
             switch (potenciometro){
                 case 0:
-                    this.temperature_btn.setBackground(Color.red);
-                    this.grade_btn.setBackground(Color.black);
-                    this.exit_btn.setBackground(Color.black);
+                    this.temperature_btn.setBackground(Color.GRAY);
+                    this.grade_btn.setBackground(Color.lightGray);
+                    this.exit_btn.setBackground(Color.lightGray);
                     break;
                 case 1:
-                    this.grade_btn.setBackground(Color.red);
-                    this.exit_btn.setBackground(Color.black);
-                    this.temperature_btn.setBackground(Color.black);
+                    this.grade_btn.setBackground(Color.GRAY);
+                    this.exit_btn.setBackground(Color.lightGray);
+                    this.temperature_btn.setBackground(Color.lightGray);
                     break;
                 case 2:
-                    this.exit_btn.setBackground(Color.red);
-                    this.grade_btn.setBackground(Color.black);
-                    this.temperature_btn.setBackground(Color.black);
+                    this.exit_btn.setBackground(Color.GRAY);
+                    this.grade_btn.setBackground(Color.lightGray);
+                    this.temperature_btn.setBackground(Color.lightGray);
                     break;
             }
             

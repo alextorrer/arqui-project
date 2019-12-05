@@ -41,20 +41,12 @@ public class VentanaTemperatura extends javax.swing.JFrame {
     private void initComponents() {
 
         lbTitulo = new javax.swing.JLabel();
-        btnSalir = new javax.swing.JButton();
         lbTemperatura = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lbTitulo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lbTitulo.setText("Temperatura");
-
-        btnSalir.setText("Salir");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
 
         lbTemperatura.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lbTemperatura.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -66,13 +58,8 @@ public class VentanaTemperatura extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(175, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lbTitulo)
-                        .addGap(186, 186, 186))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnSalir)
-                        .addGap(59, 59, 59))))
+                .addComponent(lbTitulo)
+                .addGap(186, 186, 186))
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(lbTemperatura, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -85,18 +72,11 @@ public class VentanaTemperatura extends javax.swing.JFrame {
                 .addComponent(lbTitulo)
                 .addGap(26, 26, 26)
                 .addComponent(lbTemperatura, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(btnSalir)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // Botón Salir:
-        this.dispose();
-    }//GEN-LAST:event_btnSalirActionPerformed
 
     //NUESTRAS FUNCIONES
     public void setController(Controller controller){
@@ -140,7 +120,6 @@ public class VentanaTemperatura extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel lbTemperatura;
     private javax.swing.JLabel lbTitulo;
     // End of variables declaration//GEN-END:variables

@@ -36,12 +36,12 @@ public class MainUI extends javax.swing.JFrame {
             //Serial  
             String caracter;
             SerialPort puerto = new SerialPort();
-            Com com5 = null;
+            
             try{
                 Parameters settings = new Parameters();
                 settings.setPort("COM5");  
                 settings.setBaudRate("115200");
-
+                Com com5 = new Com(settings);
 
                 serial = "";
                 while(!serial.endsWith("\n")){ 
@@ -49,6 +49,7 @@ public class MainUI extends javax.swing.JFrame {
                     serial += caracter;
                 }
                 Thread.sleep(100);
+                System.out.println(serial);
                 controller.setSerial(serial);
             }
             catch(Exception e){

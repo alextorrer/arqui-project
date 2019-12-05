@@ -42,6 +42,10 @@ public class MainUI extends javax.swing.JFrame {
         settings.setPort("COM5");  
         settings.setBaudRate("115200");
         Com com5 = new Com(settings);
+        //Espacio para variables de temperatura
+        int tempLS;
+        int tempMS;
+        int temperatura;
         while (true){
             
             //Serial  
@@ -65,7 +69,7 @@ public class MainUI extends javax.swing.JFrame {
             }
             
             
-            potenciometro = controller.interpretarPotenciometro(serial);
+            potenciometro = controller.interpretarPotenciometro();
             botonSalir = controller.interpretarBotonSalir(serial.charAt(9));
             botonEntrar = controller.interpretarBotonEntrar(serial.charAt(10));
             switch (potenciometro){
@@ -115,6 +119,11 @@ public class MainUI extends javax.swing.JFrame {
                 }
                 
             }
+            tempLS=controller.interpretarTemperaturaLS();
+            tempMS=controller.interpretarTemperaturaMS();
+            temperatura=tempLS+tempMS;
+            ventanaTemp.setTextoTemperatura(temperatura);
+            
             try {
                 Thread.sleep(50);
             }catch(InterruptedException e){

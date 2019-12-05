@@ -3,7 +3,7 @@ package UI;
 import Controller.Controller;
 import app.Com;
 import app.Parameters;
-import arquiproject.OtherMain;
+import arquiproject.Main;
 import core.SerialPort;
 import java.awt.Color;
 
@@ -19,6 +19,7 @@ public class MainUI extends javax.swing.JFrame {
         /**/
     }
     
+    //Crea un nuevo hilo para hacer la parte logica sin detener la parte grafica
     Thread ciclo = new Thread(){
         public void run(){
             try{
@@ -32,20 +33,30 @@ public class MainUI extends javax.swing.JFrame {
     
     
     public void cicloCheck() throws Exception{
+        //Instancio las dos ventanas
         VentanaTemperatura ventanaTemp = new VentanaTemperatura();
         VentanaEnviarCalificacion ventanaEC = new VentanaEnviarCalificacion();
+        
+        //Inicializo el serial
         String serial="";
+        
+        //Inicializo las variables que guardaran la informacion de la parte fisica
         int potenciometro;
         boolean botonSalir;
         boolean botonEntrar;
+        
+        //Configuro el COM5
         Parameters settings = new Parameters();
         settings.setPort("COM5");  
         settings.setBaudRate("115200");
         Com com5 = new Com(settings);
+        
         //Espacio para variables de temperatura
         float tempLS;
         float tempMS;
         float temperatura;
+        
+        //Inicio el ciclo infinito de chequeo a los componentes fisicos
         while (true){
             
             //Serial  
@@ -53,7 +64,7 @@ public class MainUI extends javax.swing.JFrame {
             SerialPort puerto = new SerialPort();
             
             try{
-                //Thread.sleep(100);
+                //Lee el serial
                 serial = "";
                 while(!serial.endsWith("\n")){ 
                     caracter = com5.receiveSingleString();
@@ -62,16 +73,19 @@ public class MainUI extends javax.swing.JFrame {
                 if(serial.length()!=12){
                     serial = "00000000000";
                 }
+                //Guarda el serial en el controller
                 controller.setSerial(serial);
             }
             catch(Exception e){
                 System.out.println("No se pudo obtener el serial");
             }
             
-            
+            //Guarda el estados de los componentes fisicos
             potenciometro = controller.interpretarPotenciometro();
             botonSalir = controller.interpretarBotonSalir(serial.charAt(9));
             botonEntrar = controller.interpretarBotonEntrar(serial.charAt(10));
+            
+            //Revisa el estado del potenciometro y te posiciona en el boton virtual corrrespondiente
             switch (potenciometro){
                 case 0:
                     this.temperature_btn.setBackground(Color.red);
@@ -89,8 +103,10 @@ public class MainUI extends javax.swing.JFrame {
                     this.temperature_btn.setBackground(Color.black);
                     break;
             }
-
+            
+            //Checa el estado del boton salir
             if (botonSalir==true){
+                //Si se encuentra en alguna ventana cierra la ventana
                 if(ventanaTemp.isVisible()){
                     ventanaTemp.setVisible(false);
                 }
@@ -99,32 +115,44 @@ public class MainUI extends javax.swing.JFrame {
                     ventanaEC.setVisible(false);  
                 } 
             }
+            
+            //Checa el estado del boton entrar
             if (botonEntrar==true){
-                
+                //Si se encuentra abierta la pantalla de calificacion
+                //Manda la calificacion escrita
                 if(ventanaEC.isVisible()){
                     ventanaEC.calificacionEnviada();
                 }else{
-                    
+                    //Checa que boton se esta seleccionando con el potenciometro
+                    //Si esta en un boton de ventana la despliega 
                     switch (potenciometro){
-                    case 0:
-                        ventanaTemp.setVisible(true);
-                        break;
-                    case 1:
-                        ventanaEC.setVisible(true);
-                        break;
-                    case 2:
-                        System.exit(0);
-                        this.dispose();
-                        break;
+                        case 0:
+                            ventanaTemp.setVisible(true);
+                            break;
+                        case 1:
+                            ventanaEC.setVisible(true);
+                            break;
+                        case 2:
+                            System.exit(0);
+                            this.dispose();
+                            break;
                     }
                 }
                 
             }
-            tempLS=controller.interpretarTemperaturaLS();
-            tempMS=controller.interpretarTemperaturaMS();
-            temperatura=tempLS+tempMS;
-            ventanaTemp.setTextoTemperatura(temperatura);
             
+            //Lee la parte alta y baja de la temperatura,
+            //las suma y las interpreta (0-1023)
+            if (ventanaTemp.isVisible()){
+                tempLS=controller.interpretarTemperaturaLS();
+                tempMS=controller.interpretarTemperaturaMS();
+                temperatura=tempLS+tempMS;
+                //Setea el numero (entre dos) en la pantalla de temperatura
+                ventanaTemp.setTextoTemperatura(temperatura/2);
+            }
+            
+            
+            //Se detiene 50 milisegundos (nop chido)
             try {
                 Thread.sleep(50);
             }catch(InterruptedException e){
@@ -242,7 +270,7 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_exit_btnActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
+        // Cuando la JFrame se abre activa el ciclo de revision infinita
         ciclo.start();
     }//GEN-LAST:event_formWindowOpened
 

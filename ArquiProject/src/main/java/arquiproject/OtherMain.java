@@ -22,34 +22,8 @@ public class OtherMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception{
-        
-        //Serial
-        String serial;
-        String caracter;
-        SerialPort puerto = new SerialPort();
-        Com com5 = null;
-        Parameters settings = new Parameters();
-            settings.setPort("COM5");  
-            settings.setBaudRate("115200");
-        
-            
-            /*while(true){
-            serial = "";
-            while(!serial.endsWith("\n")){ 
-                caracter = com5.receiveSingleString();
-                serial += caracter;
-            }
-            Thread.sleep(100);
-            controller.setSerial(serial);
-            }*/
-        //UI
-            
-        //----------
         Controller controller = new Controller();
-        serial = "042015000";
-        controller.setSerial(serial);
-        
-        
+
         MainUI mainUI = new MainUI();
         VentanaTemperatura ventanaTemperatura = new VentanaTemperatura();
 
@@ -59,7 +33,6 @@ public class OtherMain {
         ventanaTemperatura.setController(controller);
         
         mainUI.setVisible(true);
-        
         
     
         //serial = "255215000";

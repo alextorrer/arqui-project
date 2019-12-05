@@ -1,7 +1,10 @@
 
 package UI;
 import Controller.Controller;
+import app.Com;
+import app.Parameters;
 import arquiproject.OtherMain;
+import core.SerialPort;
 import java.awt.Color;
 
 public class MainUI extends javax.swing.JFrame {
@@ -23,18 +26,40 @@ public class MainUI extends javax.swing.JFrame {
     
     
     public void cicloCheck(){
-        String serial;
+        String serial="";
         StringBuilder nuevoSerial;
         int potenciometro;
         boolean botonSalir;
         boolean botonEntrar;
         while (true){
             
-            serial = controller.getSerial();
+            //Serial  
+            String caracter;
+            SerialPort puerto = new SerialPort();
+            Com com5 = null;
+            try{
+                Parameters settings = new Parameters();
+                settings.setPort("COM5");  
+                settings.setBaudRate("115200");
+
+
+                serial = "";
+                while(!serial.endsWith("\n")){ 
+                    caracter = com5.receiveSingleString();
+                    serial += caracter;
+                }
+                Thread.sleep(100);
+                controller.setSerial(serial);
+            }
+            catch(Exception e){
+                System.out.println("No se pudo obtener el serial");
+            }
+            
+            
             potenciometro = controller.interpretarPotenciometro(serial);
             System.out.println(potenciometro+"\n");
-            botonSalir = controller.interpretarBotonSalir(serial.charAt(7));
-            botonEntrar = controller.interpretarBotonEntrar(serial.charAt(8));
+            botonSalir = controller.interpretarBotonSalir(serial.charAt(9));
+            botonEntrar = controller.interpretarBotonEntrar(serial.charAt(10));
             switch (potenciometro){
                 case 0:
                     this.temperature_btn.setBackground(Color.red);

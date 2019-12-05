@@ -58,7 +58,7 @@ public class Controller {
     
     public int interpretarTemperaturaLS(String serial){
         String temperatura="";
-        for (int i=0;i<3;i++){
+        for (int i=3;i<6;i++){
             char caracter = serial.charAt(i);
             temperatura = temperatura + caracter;
         }
@@ -68,7 +68,7 @@ public class Controller {
     public int interpretarTemperaturaMS(String serial){
         String temperatura="";
         int temperaturaCompleta=0;
-        temperatura = temperatura + serial.charAt(3);
+        temperatura = temperatura + serial.charAt(2);
         switch (temperatura){
             case "0":
                 temperaturaCompleta=0;
@@ -88,7 +88,7 @@ public class Controller {
     
     public int interpretarPotenciometro(String serial){
         String potenciometro="";
-        for (int i=4;i<7;i++){
+        for (int i=6;i<9;i++){
             char caracter = serial.charAt(i);
             potenciometro = potenciometro + caracter;
         }

@@ -20,17 +20,26 @@ public class MainUI extends javax.swing.JFrame {
     
     Thread ciclo = new Thread(){
         public void run(){
-            cicloCheck();
+            try{
+                cicloCheck();
+            }
+            catch(Exception e){
+                
+            }
         }
     };
     
     
-    public void cicloCheck(){
+    public void cicloCheck() throws Exception{
         String serial="";
         StringBuilder nuevoSerial;
         int potenciometro;
         boolean botonSalir;
         boolean botonEntrar;
+        Parameters settings = new Parameters();
+                settings.setPort("COM5");  
+                settings.setBaudRate("115200");
+                Com com5 = new Com(settings);
         while (true){
             
             //Serial  
@@ -38,18 +47,15 @@ public class MainUI extends javax.swing.JFrame {
             SerialPort puerto = new SerialPort();
             
             try{
-                Parameters settings = new Parameters();
-                settings.setPort("COM5");  
-                settings.setBaudRate("115200");
-                Com com5 = new Com(settings);
-
+                //Thread.sleep(100);
                 serial = "";
                 while(!serial.endsWith("\n")){ 
                     caracter = com5.receiveSingleString();
                     serial += caracter;
                 }
-                Thread.sleep(100);
-                System.out.println(serial);
+                if(serial.length()!=12){
+                    serial = "00000000000";
+                }
                 controller.setSerial(serial);
             }
             catch(Exception e){
@@ -58,7 +64,6 @@ public class MainUI extends javax.swing.JFrame {
             
             
             potenciometro = controller.interpretarPotenciometro(serial);
-            System.out.println(potenciometro+"\n");
             botonSalir = controller.interpretarBotonSalir(serial.charAt(9));
             botonEntrar = controller.interpretarBotonEntrar(serial.charAt(10));
             switch (potenciometro){

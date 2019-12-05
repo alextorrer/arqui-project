@@ -23,12 +23,6 @@ public class VentanaTemperatura extends javax.swing.JFrame {
         
     }
     
-    public VentanaTemperatura(Controller controller){
-        initComponents();
-        this.controller=controller;
-        mostrarTemperatura();
-    }
-    
     public void mostrarTemperatura(){
         int tempLS;
         int tempMS;
@@ -58,6 +52,9 @@ public class VentanaTemperatura extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
@@ -113,6 +110,11 @@ public class VentanaTemperatura extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         
     }//GEN-LAST:event_formWindowActivated
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // Empieza el ciclo
+        mostrarTemperatura();
+    }//GEN-LAST:event_formWindowOpened
 
     //NUESTRAS FUNCIONES
     public void setController(Controller controller){

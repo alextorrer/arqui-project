@@ -27,7 +27,7 @@ public class VentanaTemperatura extends javax.swing.JFrame {
     }
     
     public void setTextoTemperatura(float temperatura){
-        this.lbTemperatura.setText(""+(temperatura)/2+" °C");
+        this.lbTemperatura.setText(""+(temperatura)+" °C");
     }
     
 
@@ -45,21 +45,6 @@ public class VentanaTemperatura extends javax.swing.JFrame {
         lbTemperatura = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
-            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
-                formWindowGainedFocus(evt);
-            }
-            public void windowLostFocus(java.awt.event.WindowEvent evt) {
-            }
-        });
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
-            }
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
 
         lbTitulo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lbTitulo.setText("Temperatura");
@@ -112,18 +97,6 @@ public class VentanaTemperatura extends javax.swing.JFrame {
         // Botón Salir:
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
-
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        
-    }//GEN-LAST:event_formWindowActivated
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // Empieza el ciclo
-    }//GEN-LAST:event_formWindowOpened
-
-    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formWindowGainedFocus
 
     //NUESTRAS FUNCIONES
     public void setController(Controller controller){

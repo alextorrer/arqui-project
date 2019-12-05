@@ -155,7 +155,7 @@ public class VentanaEnviarCalificacion extends javax.swing.JFrame {
     
     public void calificacionEnviada(){
         txtIngresarCalif.setText(" ");
-        if (txtIngresarCalif.getText()==""){
+        if (txtIngresarCalif.getText().isEmpty()){
             this.txtIngresarCalif.setText("0.0");
             this.lbCalificacion.setText("Piense mejor su calificacion...");
         }else {

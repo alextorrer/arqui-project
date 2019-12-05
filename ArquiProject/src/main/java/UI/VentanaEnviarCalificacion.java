@@ -38,7 +38,7 @@ public class VentanaEnviarCalificacion extends javax.swing.JFrame {
         txtIngresarCalif = new javax.swing.JTextField();
         btnEnviar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        label1 = new java.awt.Label();
+        lbCalificacion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,9 +62,6 @@ public class VentanaEnviarCalificacion extends javax.swing.JFrame {
             }
         });
 
-        label1.setText("Calificacion Enviada");
-        label1.setVisible(false);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,15 +72,13 @@ public class VentanaEnviarCalificacion extends javax.swing.JFrame {
                         .addGap(164, 164, 164)
                         .addComponent(lbEnviarCalificacion))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(51, 51, 51)
                                 .addComponent(lbIngresarCalif))
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(68, 68, 68)
                                 .addComponent(btnEnviar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(22, 22, 22)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -94,6 +89,10 @@ public class VentanaEnviarCalificacion extends javax.swing.JFrame {
                                 .addComponent(btnCancelar)
                                 .addGap(26, 26, 26)))))
                 .addContainerGap(21, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lbCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(215, 215, 215))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,12 +103,12 @@ public class VentanaEnviarCalificacion extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbIngresarCalif)
                     .addComponent(txtIngresarCalif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(lbCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnEnviar)
-                        .addComponent(btnCancelar))
-                    .addComponent(label1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEnviar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCancelar))
                 .addGap(30, 30, 30))
         );
 
@@ -124,7 +123,6 @@ public class VentanaEnviarCalificacion extends javax.swing.JFrame {
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         // Botón Enviar
         txtIngresarCalif.setText(" ");
-        JOptionPane.showMessageDialog(null, "Su calificación ha sido enviada al correo irving.cifuentes@correo.uady.mx");
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     /**
@@ -162,18 +160,20 @@ public class VentanaEnviarCalificacion extends javax.swing.JFrame {
         });
     }
     
-    public boolean showOptionPane(){
+    public void calificacionEnviada(){
         txtIngresarCalif.setText(" ");
         //JOptionPane.showMessageDialog(null, "Su calificación ha sido enviada al correo irving.cifuentes@correo.uady.mx");
-        label1.setVisible(true);
-        flagPane = true;
-        return flagPane;
+        this.lbCalificacion.setText("Calificacion enviada...!");
     }
-
+    
+    public void limpiarCalificacionMensaje(){
+        this.lbCalificacion.setText("");
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEnviar;
-    private java.awt.Label label1;
+    private javax.swing.JLabel lbCalificacion;
     private javax.swing.JLabel lbEnviarCalificacion;
     private javax.swing.JLabel lbIngresarCalif;
     private javax.swing.JTextField txtIngresarCalif;

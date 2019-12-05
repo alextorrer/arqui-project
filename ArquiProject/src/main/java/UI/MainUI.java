@@ -95,13 +95,14 @@ public class MainUI extends javax.swing.JFrame {
                     ventanaTemp.setVisible(false);
                 }
                 if (ventanaEC.isVisible()){
+                    ventanaEC.limpiarCalificacionMensaje();
                     ventanaEC.setVisible(false);  
                 } 
             }
             if (botonEntrar==true){
                 
                 if(ventanaEC.isVisible()){
-                    ventanaEC.showOptionPane();
+                    ventanaEC.calificacionEnviada();
                 }else{
                     
                     switch (potenciometro){

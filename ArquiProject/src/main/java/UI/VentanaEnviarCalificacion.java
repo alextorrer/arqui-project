@@ -5,6 +5,7 @@
  */
 package UI;
 
+
 import javax.swing.JOptionPane;
 
 /**
@@ -12,6 +13,7 @@ import javax.swing.JOptionPane;
  * @author plupy
  */
 public class VentanaEnviarCalificacion extends javax.swing.JFrame {
+    
 
     /**
      * Creates new form VentanaEnviarCalificacion

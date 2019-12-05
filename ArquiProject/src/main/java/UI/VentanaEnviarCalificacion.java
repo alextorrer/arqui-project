@@ -20,6 +20,7 @@ public class VentanaEnviarCalificacion extends javax.swing.JFrame {
      */
     public VentanaEnviarCalificacion() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

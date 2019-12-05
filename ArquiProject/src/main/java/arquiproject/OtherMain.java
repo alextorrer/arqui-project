@@ -34,6 +34,7 @@ public class OtherMain {
         
         mainUI.setVisible(true);
         
+        
     
         //serial = "255215000";
         

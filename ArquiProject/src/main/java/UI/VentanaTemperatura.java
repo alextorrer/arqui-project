@@ -19,6 +19,7 @@ public class VentanaTemperatura extends javax.swing.JFrame {
      */
     public VentanaTemperatura() {
         initComponents();
+        this.setLocationRelativeTo(null);
         
     }
     

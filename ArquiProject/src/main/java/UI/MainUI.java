@@ -15,6 +15,7 @@ public class MainUI extends javax.swing.JFrame {
      */
     public MainUI() {
         initComponents();
+        this.setLocationRelativeTo(null);
         /**/
     }
     
@@ -39,9 +40,9 @@ public class MainUI extends javax.swing.JFrame {
         boolean botonSalir;
         boolean botonEntrar;
         Parameters settings = new Parameters();
-                settings.setPort("COM5");  
-                settings.setBaudRate("115200");
-                Com com5 = new Com(settings);
+        settings.setPort("COM5");  
+        settings.setBaudRate("115200");
+        Com com5 = new Com(settings);
         while (true){
             
             //Serial  
@@ -91,8 +92,8 @@ public class MainUI extends javax.swing.JFrame {
                     ventanaTemp.setVisible(false);
                 }
                 if (ventanaEC.isVisible()){
-                    ventanaEC.setVisible(false);
-                }
+                    ventanaEC.setVisible(false);  
+                } 
             }
             if (botonEntrar==true){
                 switch (potenciometro){
@@ -129,13 +130,12 @@ public class MainUI extends javax.swing.JFrame {
         grade_btn = new javax.swing.JButton();
         exit_btn = new javax.swing.JButton();
         temperature_btn = new javax.swing.JButton();
-        btnStart = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
@@ -163,16 +163,10 @@ public class MainUI extends javax.swing.JFrame {
 
         temperature_btn.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         temperature_btn.setText("Mostrar Temperatura");
+        temperature_btn.setFocusPainted(false);
         temperature_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 temperature_btnActionPerformed(evt);
-            }
-        });
-
-        btnStart.setText("Start");
-        btnStart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnStartActionPerformed(evt);
             }
         });
 
@@ -192,10 +186,7 @@ public class MainUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                         .addComponent(grade_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(56, 56, 56)
-                        .addComponent(exit_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnStart)))
+                        .addComponent(exit_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -204,9 +195,7 @@ public class MainUI extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnStart)
-                .addGap(9, 9, 9)
+                .addGap(43, 43, 43)
                 .addComponent(welcome_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -236,13 +225,10 @@ public class MainUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_exit_btnActionPerformed
 
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        
-    }//GEN-LAST:event_formWindowActivated
-
-    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
         ciclo.start();
-    }//GEN-LAST:event_btnStartActionPerformed
+    }//GEN-LAST:event_formWindowOpened
 
     //NUESTRAS FUNCIONES
     public void setController(Controller controller){
@@ -265,7 +251,6 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnStart;
     private javax.swing.JButton exit_btn;
     private javax.swing.JButton grade_btn;
     private javax.swing.JButton temperature_btn;

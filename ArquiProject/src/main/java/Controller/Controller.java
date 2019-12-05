@@ -56,7 +56,7 @@ public class Controller {
     
     //FUNCIONES LOGICAS
     
-    public int interpretarTemperaturaLS(String serial){
+    public int interpretarTemperaturaLS(){
         String temperatura="";
         for (int i=3;i<6;i++){
             char caracter = serial.charAt(i);
@@ -65,7 +65,7 @@ public class Controller {
         return Integer.parseInt(temperatura);
     }
     
-    public int interpretarTemperaturaMS(String serial){
+    public int interpretarTemperaturaMS(){
         String temperatura="";
         int temperaturaCompleta=0;
         temperatura = temperatura + serial.charAt(2);
@@ -86,7 +86,7 @@ public class Controller {
         return temperaturaCompleta;
     }
     
-    public int interpretarPotenciometro(String serial){
+    public int interpretarPotenciometro(){
         String potenciometro="";
         for (int i=6;i<9;i++){
             char caracter = serial.charAt(i);

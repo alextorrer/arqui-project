@@ -26,34 +26,8 @@ public class VentanaTemperatura extends javax.swing.JFrame {
         
     }
     
-    Thread ciclo = new Thread(){
-        public void run(){
-            try{
-                cicloTemperatura();
-            }
-            catch(Exception e){
-                
-            }
-        }
-    };
-    
-    public void cicloTemperatura(){
-        int tempLS;
-        int tempMS;
-        int temperatura;
-        while (true){
-            tempLS = controller.interpretarTemperaturaLS(controller.getSerial());
-            System.out.println(tempLS);
-            tempMS = controller.interpretarTemperaturaMS(controller.getSerial());
-            System.out.println(tempMS);
-            temperatura = tempLS+tempMS;
-            this.lbTemperatura.setText(""+controller.interpretarTemperatura(temperatura));
-            
-            if (!this.isVisible()){
-                break;
-            }
-        }
-        
+    public void setTextoTemperatura(int temperatura){
+        this.lbTemperatura.setText(""+temperatura);
     }
     
 
@@ -137,7 +111,6 @@ public class VentanaTemperatura extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // Empieza el ciclo
-        ciclo.start();
     }//GEN-LAST:event_formWindowOpened
 
     //NUESTRAS FUNCIONES

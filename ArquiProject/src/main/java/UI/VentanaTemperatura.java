@@ -72,6 +72,7 @@ public class VentanaTemperatura extends javax.swing.JFrame {
         });
 
         lbTemperatura.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lbTemperatura.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbTemperatura.setText("En esta ventana iría la temperatura mostrada");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
